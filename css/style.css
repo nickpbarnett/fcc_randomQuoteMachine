@@ -1,0 +1,11 @@
+body{
+	padding: 25px;
+}
+
+.jumbotron{
+	background-color: orange;
+}
+
+h1{
+	color:#fff !important;
+}

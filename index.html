@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nick's random Quote Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://use.fontawesome.com/0c0c22797e.js"></script>
+
+  <!-- animate css -->
+  <link rel= "stylesheet" type= "text/css" href= "./css/animate.css">
+
+  <link rel= "stylesheet" type= "text/css" href= "./css/style.css">
+
+  <script>
+    $(document).ready(function() {
+
+      $("#getQuote").on("click", function(){
+          $.getJSON("json/quotes.json", function(data) {
+            x=data.length;
+            rand=Math.floor(Math.random()*x);
+            a=data[rand].author;
+            q="\""+data[rand].quote+"\"";
+            $(".quote").html(q);
+            $(".author").html(a);
+          });
+      });
+
+    });
+
+    function tweetIt () {
+      var quote = document.getElementById('qu').innerText;
+      var author= document.getElementById('au').innerText;
+      var tweetContent=quote+ " - "+author;
+      var t1 = 'https://twitter.com/intent/tweet?text=';
+      var tweetURL = t1+tweetContent;
+      window.open(tweetURL);
+    }
+
+  </script>
+
+
+</head>
+
+<body>
+  <div class="container text-center">
+    <div class="jumbotron">
+
+      <h1>Nick's Random Quote Machine</h1>
+      <div class="well">
+        <h2><div class="quote" id="qu"></div></h2>
+      </div> <!-- end .well -->
+      <h3><em><div class="author" id="au"></div></em></h3>
+
+    </div> <!-- end .jumbotron -->
+
+    <div class="">
+      <button id="getQuote" class="btn btn-success">hit me for a new quote</button>
+    </div>
+
+    <div class="">
+    <h2>
+    <button class="btn btn-default" onclick="tweetIt()">
+        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+    </button>
+    </h2>
+
+
+    </div>
+
+  </div> <!-- end .container -->
+
+</body>
+
+</html>
